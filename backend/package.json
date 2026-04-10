@@ -4,9 +4,17 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "test":  "echo \"All good\"",
-    "dev": "nodemon server.js",
-    "lint": "eslint ."
+    "dev": "nodemon src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "format": "prettier --write src/**/*.ts",
+    "prepare": "husky",
+    "type-check": "tsc --noEmit"
+  },
+   "lint-staged": {
+    "src/**/*.{ts,js}": ["eslint --fix", "prettier --write"]
   },
   "keywords": [],
   "author": "",
@@ -21,6 +29,14 @@
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.4.1",
     "morgan": "^1.10.1",
-    "nodemon": "^3.1.14"
+    "nodemon": "^3.1.14",
+    "prettier-plugin-tailwindcss": "^0.7.2"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^20.5.0",
+    "@commitlint/config-conventional": "^20.5.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "prettier": "^3.8.2"
   }
 }
