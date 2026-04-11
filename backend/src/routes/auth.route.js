@@ -14,4 +14,8 @@ const router = Router();
 //* Registration route */
 router.post("/register", validateRegistration, registerController);
 
+
+//* Login route */
+router.post("/login", validateLogin, loginController);
+
 export default router;
