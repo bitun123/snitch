@@ -2,7 +2,6 @@ import userModel from "../models/user.model.js";
 import { config } from "../config/config.js";
 import jwt from "jsonwebtoken";
 
-
 // helper function to send response
 async function withSendTokenResponse(user, res, message) {
   const token = jwt.sign(
@@ -30,11 +29,10 @@ async function withSendTokenResponse(user, res, message) {
   });
 }
 
-
 // register controller
 export const registerController = async (req, res) => {
   try {
-    const { userName, email, password, phone } = req.body;
+    const { userName, email, password, phone, isSeller } = req.body;
 
     // Check if user already exists
     const existingUser = await userModel.findOne({
@@ -60,7 +58,6 @@ export const registerController = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
-
 
 //Login controller
 export const loginController = async (req, res) => {
