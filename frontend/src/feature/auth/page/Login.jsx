@@ -6,10 +6,13 @@ import AuthInput from '../components/AuthInput';
 import AuthButton from '../components/AuthButton';
 import { useAuth } from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function Login() {
 
   const { handleLogin } = useAuth();
+  const authState = useSelector((state) => state.auth);
+  const { loading, error } = authState;
   const navigate = useNavigate(); // Initialize useNavigate for potential future navigation needs
   const {
     register,
@@ -81,10 +84,16 @@ function Login() {
             </a>
           </div>
         </div>
-
+        {
+          error && (
+            <p className="mt-2 text-[10px] text-red-500 font-inter uppercase tracking-tighter">
+              {error}
+            </p>
+          )
+        }
         <div className="pt-6">
           <AuthButton type="submit" disabled={!isValid}>
-            SIGN IN
+            {loading ? 'Logging in...' : 'SIGN IN'}
           </AuthButton>
         </div>
 

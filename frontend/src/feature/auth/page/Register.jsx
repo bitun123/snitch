@@ -7,9 +7,17 @@ import AuthButton from '../components/AuthButton';
 import AuthToggle from '../components/AuthToggle';
 import { useAuth } from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function Register() {
+
   const navigate = useNavigate(); // Initialize useNavigate for potential future navigation needs
+
+  const authState = useSelector((state) => state.auth);
+
+  const { loading, error } = authState;
+
+
   const { handleRegister } = useAuth();
   const {
     register,
@@ -114,9 +122,18 @@ function Register() {
           />
         </div>
 
+
+        {
+          error && (
+            <p className="mt-2 text-[10px] text-red-500 font-inter uppercase tracking-tighter">
+              {error}
+            </p>
+          )
+        }
+
         <div className="pt-4">
           <AuthButton type="submit" disabled={!isValid}>
-            CREATE ACCOUNT
+            {loading ? 'Registering...' : 'CREATE ACCOUNT'}
           </AuthButton>
         </div>
 
