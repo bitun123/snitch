@@ -7,8 +7,8 @@
  */
 
 import { Router } from "express";
-import { validateRegistration } from "../validator/auth.validator.js";
-import { registerController } from "../controller/auth.controller.js";
+import { validateLogin, validateRegistration } from "../validator/auth.validator.js";
+import { registerController ,loginController} from "../controller/auth.controller.js";
 const router = Router();
 
 //* Registration route */
