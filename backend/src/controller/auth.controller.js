@@ -89,8 +89,6 @@ export const loginController = async (req, res) => {
   }
 };
 
-
-
 // Google OAuth callback controller
 export const googleCallbackController = async (req, res) => {
   try {
@@ -124,5 +122,7 @@ export const googleCallbackController = async (req, res) => {
     res.cookie("token", token);
 
     res.redirect("http://localhost:5173/");
-  } catch (error) {}
+  } catch (error) {
+    throw new Error("Google authentication failed: " + error.message);
+  }
 };
