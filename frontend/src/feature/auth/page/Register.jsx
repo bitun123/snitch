@@ -8,6 +8,7 @@ import AuthToggle from '../components/AuthToggle';
 import { useAuth } from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import GoogleAuthButton from '../components/GoogleAuthButton';
 
 function Register() {
 
@@ -140,6 +141,7 @@ function Register() {
         <p className="mt-6 text-[10px] text-[#484847] text-center leading-relaxed">
           By creating an account, you agree to our <span className="text-[#adaaaa] underline cursor-pointer">Terms of Service</span> and <span className="text-[#adaaaa] underline cursor-pointer">Privacy Policy</span>.
         </p>
+        <GoogleAuthButton/> 
       </form>
     </AuthLayout>
   );

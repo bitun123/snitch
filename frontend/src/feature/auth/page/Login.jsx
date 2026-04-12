@@ -7,6 +7,7 @@ import AuthButton from '../components/AuthButton';
 import { useAuth } from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import GoogleAuthButton from '../components/GoogleAuthButton';
 
 function Login() {
 
@@ -97,14 +98,17 @@ function Login() {
           </AuthButton>
         </div>
 
-        <div className="mt-8 flex items-center justify-center space-x-4">
+        <div className="mt-8 flex flex items-center justify-center space-x-4">
           <div className="h-[1px] w-full bg-[#484847]/30"></div>
           <span className="text-[10px] text-[#484847] font-bold uppercase tracking-[0.2em] whitespace-nowrap">
             Secure Login
           </span>
+         
           <div className="h-[1px] w-full bg-[#484847]/30"></div>
         </div>
+         <GoogleAuthButton/>
       </form>
+      
     </AuthLayout>
   );
 }
