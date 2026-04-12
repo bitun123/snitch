@@ -90,10 +90,39 @@ export const loginController = async (req, res) => {
 };
 
 
-export const googleCallbackController = async (req, res) => {
-  try{
-console.log("Google callback controller called with user profile:", req.user);
-  }catch(error){
 
-  }
-}
+// Google OAuth callback controller
+export const googleCallbackController = async (req, res) => {
+  try {
+    const { id, displayName, emails, photos } = req.user;
+
+    const email = emails[0].value;
+    const photo = photos[0].value;
+
+    let user = await userModel.findOne({ email });
+
+    if (!user) {
+      user = await userModel.create({
+        userName: displayName,
+        email,
+        googleId: id,
+        // Optionally, you can store the profile picture URL in the user model
+        // profilePicture: photo,
+      });
+    }
+
+    const token = jwt.sign(
+      {
+        id: user._id,
+      },
+      config.JWT_SECRET,
+      {
+        expiresIn: "1d",
+      },
+    );
+
+    res.cookie("token", token);
+
+    res.redirect("http://localhost:5173/");
+  } catch (error) {}
+};

@@ -15,17 +15,23 @@ const userSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      required: [true, "Please provide a password"],
+      required: function () {
+        return !this.googleId; // Password is required only if googleId is not present
+      },
       minlength: [6, "Password must be at least 6 characters long"],
     },
     phone: {
       type: String,
-      required: [true, "Please provide a phone number"],
+      required: [false],
     },
     role: {
       type: String,
       enum: ["buyer", "seller"],
       default: "buyer",
+    },
+    googleId: {
+      type: String,
+      unique: true,
     },
   },
   {
@@ -41,8 +47,6 @@ userSchema.pre("save", async function () {
   const hash = await bcrypt.hash(this.password, 10);
   this.password = hash;
 });
-
-
 
 userSchema.methods.comparePassword = async function (password) {
   return await bcrypt.compare(password, this.password);
