@@ -18,21 +18,17 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookies());
 
-
 {
   /* Passport configuration */
 }
 
-
 app.use(passport.initialize());
-
 
 {
   /* Google OAuth Strategy */
 }
 
-
-app.use(
+passport.use(
   new GoogleStrategy(
     {
       clientID: config.GOOGLE_CLIENT_ID,
@@ -45,9 +41,7 @@ app.use(
   ),
 );
 
-
 //* Routes */
 app.use("/api/auth", authRoutes);
-
 
 export default app;
