@@ -88,3 +88,12 @@ export const loginController = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+
+
+export const googleCallbackController = async (req, res) => {
+  try{
+console.log("Google callback controller called with user profile:", req.user);
+  }catch(error){
+
+  }
+}

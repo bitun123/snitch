@@ -7,15 +7,41 @@
  */
 
 import { Router } from "express";
-import { validateLogin, validateRegistration } from "../validator/auth.validator.js";
-import { registerController ,loginController} from "../controller/auth.controller.js";
+import {
+  validateLogin,
+  validateRegistration,
+} from "../validator/auth.validator.js";
+import {
+  registerController,
+  loginController,
+  googleCallbackController,
+} from "../controller/auth.controller.js";
+
+import passport from "passport";
+
 const router = Router();
 
 //* Registration route */
 router.post("/register", validateRegistration, registerController);
 
-
 //* Login route */
 router.post("/login", validateLogin, loginController);
+
+router.get(
+  "/google",
+  passport.authenticate("google", { scope: ["profile", "email"] }),
+);
+
+router.get(
+  "/google/callback",
+  passport.authenticate("google", {
+    session: false,
+    failureRedirect:
+      config.NODE_ENV == "development"
+        ? "http://localhost:5173/login"
+        : "/login",
+  }),
+  googleCallbackController,
+);
 
 export default router;
