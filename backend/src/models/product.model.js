@@ -32,10 +32,6 @@ const productSchema = new mongoose.Schema({
             url:{
                 type:String,
                 required:[true,"Please provide an image url for this product"],
-            },
-            alt:{
-                type:String,
-                required:[true,"Please provide an alt text for this image"],
             }
         }
     ]
