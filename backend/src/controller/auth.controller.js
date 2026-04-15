@@ -7,6 +7,7 @@ async function withSendTokenResponse(user, res, message) {
   const token = jwt.sign(
     {
       id: user._id,
+      role: user.role,
     },
     config.JWT_SECRET,
     {
@@ -25,6 +26,7 @@ async function withSendTokenResponse(user, res, message) {
       userName: user.userName,
       email: user.email,
       phone: user.phone,
+      role: user.role,
     },
   });
 }
