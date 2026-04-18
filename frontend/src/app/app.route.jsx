@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 import Login from '../feature/auth/page/Login'
 import Register from '../feature/auth/page/Register'
+import CreateProducts from '../feature/product/pages/CreateProducts'
 
 
 export const routes = createBrowserRouter([
@@ -14,5 +15,9 @@ export const routes = createBrowserRouter([
     }, {
         path: '/register',
         element: <Register />
+    },
+    {
+        path:'/seller/create-product',
+        element:<CreateProducts/>
     }
 ])
