@@ -25,10 +25,15 @@ if (!process.env.NODE_ENV) {
   throw new Error("NODE_ENV is not defined in the environment variables");
 }
 
+if(!process.env.IMAGEKIT_API_KEY){
+  throw new Error("IMAGEKIT_API_KEY is not defined in the environment variables");
+}
+
 export const config = {
   MONGODB_URI: process.env.MONGODB_URI,
   JWT_SECRET: process.env.JWT_SECRET,
   GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
   GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
+  IMAGEKIT_API_KEY: process.env.IMAGEKIT_API_KEY,
   NODE_ENV: process.env.NODE_ENV || "development",
 };

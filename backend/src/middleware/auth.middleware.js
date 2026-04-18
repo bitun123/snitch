@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import { config } from "../config/config.js";
-import userModel from "../model/user.model.js";
+import userModel from "../models/user.model.js";
 
 
 //* Middleware to authenticate sellers */

@@ -11,7 +11,7 @@ const productSchema = new mongoose.Schema({
         required:[true,"Please provide a description for this product"],
     },
     seller:{
-        Type:mongoose.Schema.Types.ObjectId,
+        type:mongoose.Schema.Types.ObjectId,
         ref:"User",
         required:[true,"Please provide a seller for this product"],
     },
