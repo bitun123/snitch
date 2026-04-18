@@ -40,3 +40,25 @@ try {
 }
 
 }
+
+
+export const getAllProductsController = async (req, res) => {
+    try {
+        const seller = req.User._id;
+
+        const products = await productModel.find({seller:seller._id});
+
+        res.status(200).json({
+            message:"Products fetched successfully",
+            products
+        })
+
+    } catch (error) {
+        console.error("Error fetching products:", error);
+        res.status(500).json({
+            message:"Error fetching products",
+            error
+        });
+
+    }
+}

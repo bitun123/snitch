@@ -7,7 +7,22 @@ import {productCreationValidationRules} from '../validator/product.validator.js'
 const productRouter = Router();
 
 
-
+/**@
+ * @route POST /api/products
+ * @desc Create a new product
+ * @access Private (Seller only)
+ * @body { name: String, description: String, price: Number, category: String, images: Array of Files }
+ */
 productRouter.post("/", authenticateSeller,productCreationValidationRules, upload.array("images", 5), createProductController);
+
+
+/**@
+ * @route GET /api/products
+ * @desc Get all products with pagination and filtering
+ * @access Public
+ * @query { page: Number, limit: Number, category: String, priceRange: String }
+ */
+
+productRouter.get("/",authenticateSeller, getAllProductsController);
 
 export default productRouter;
