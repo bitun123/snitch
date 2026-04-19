@@ -12,7 +12,7 @@ const productSchema = new mongoose.Schema({
     },
     seller:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"User",
+        ref:"user",
         required:[true,"Please provide a seller for this product"],
     },
     price:{

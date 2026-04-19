@@ -1,4 +1,4 @@
-import {body, validationResult} from "express-validator";
+import { body, validationResult } from "express-validator";
 
 function validateProductCreation(req, res, next) {
     const errors = validationResult(req);
@@ -7,13 +7,13 @@ function validateProductCreation(req, res, next) {
     }
 
 
-    next ();
+    next();
 }
 
 export const productCreationValidationRules = [
-        body("title").notEmpty().withMessage("Title is required"),
-        body("description").notEmpty().withMessage("Description is required"),
-        body("priceAmount").isNumeric().withMessage("Price amount must be a number"),
-        body("priceCurrency").notEmpty().withMessage("Price currency is required"),
-    validateProductCreation 
+    body("title").notEmpty().withMessage("Title is required"),
+    body("description").notEmpty().withMessage("Description is required"),
+    body("priceAmount").notEmpty().withMessage("Price amount is required"),
+    body("priceCurrency").notEmpty().withMessage("Price currency is required"),
+    validateProductCreation
 ]

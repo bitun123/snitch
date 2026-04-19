@@ -1,20 +1,20 @@
-import Imagekit from "@imagekit/nodejs";
+import ImageKit from '@imagekit/nodejs';
 import { config } from "../config/config.js";
 
 
-const client = new Imagekit({
+const client = new ImageKit({
     privateKey: config.IMAGEKIT_API_KEY,
 })
 
 
-export async function uploadFile({buffer,filName,folder="snitch"}){
+export async function uploadFile({ buffer, fileName, folder = "snitch" }) {
 
 
     try {
         const result = await client.files.upload({
-            file:await Imagekit.toFile(buffer),
-            fileName:filName,
-            folder:folder
+            file: await ImageKit.toFile(buffer),
+            fileName,
+            folder
         })
 
         return result;

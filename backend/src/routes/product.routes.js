@@ -13,7 +13,10 @@ const productRouter = Router();
  * @access Private (Seller only)
  * @body { name: String, description: String, price: Number, category: String, images: Array of Files }
  */
-productRouter.post("/create/product", authenticateSeller,productCreationValidationRules, upload.array("images", 5), createProductController);
+
+
+productRouter.post("/create/product", authenticateSeller, upload.array("images", 5), createProductController);
+
 
 
 /**@
@@ -22,6 +25,8 @@ productRouter.post("/create/product", authenticateSeller,productCreationValidati
  * @access Public
  * @query { page: Number, limit: Number, category: String, priceRange: String }
  */
+
+
 
 productRouter.get("/products",authenticateSeller, getAllProductsController);
 
