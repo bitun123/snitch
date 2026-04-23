@@ -34,7 +34,7 @@ const SellerProductCard = ({ product }) => {
             </div>
 
             {/* Content */}
-            <div className="p-4 space-y-2">
+            <div className="p-4 space-y-4">
                 <div className="space-y-1.5">
                     <p className="text-[9px] font-bold uppercase tracking-widest text-[#474747]">
                         {new Date(createdAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
