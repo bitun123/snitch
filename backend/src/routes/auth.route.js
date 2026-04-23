@@ -16,9 +16,12 @@ import {
   registerController,
   loginController,
   googleCallbackController,
+  getProfileController
 } from "../controller/auth.controller.js";
 
 import passport from "passport";
+import { authenticateUser } from "../middleware/auth.middleware.js";
+import { get } from "mongoose";
 
 const router = Router();
 
@@ -45,4 +48,8 @@ router.get(
   googleCallbackController,
 );
 
+
+
+
+router.get("/profile",authenticateUser,getProfileController)
 export default router;

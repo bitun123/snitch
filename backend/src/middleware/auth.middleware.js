@@ -36,3 +36,30 @@ if(user.role !== "seller"){
 }
 
 
+//* Middleware to authenticate buyers */
+export const authenticateUser = async (req, res, next) => {
+    const token = req.cookies.token; 
+
+    if(!token){
+        return res.status(401).json({ message: "Unauthorized" });
+    }
+
+    let decode;
+    try {
+      decode = jwt.verify(token, config.JWT_SECRET);
+
+      const user = await userModel.findById(decode.id);
+
+      if(!user){
+        return res.status(401).json({ message: "Unauthorized" });
+      }
+
+      req.user = user;
+      next();
+    } catch (error) {
+      console.error("Error in authenticateBuyer middleware:", error);
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+
+}
+

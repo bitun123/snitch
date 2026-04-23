@@ -134,5 +134,31 @@ export const googleCallbackController = async (req, res) => {
 };
 
 
+// Get user profile controller
+export const getProfileController = async (req, res) => {
+
+
+  try{
+    const user = req.user;
+if(!user){
+    return res.status(404).json({ message: "User not found" });
+}
+
+res.status(200).json({
+    message: "User profile fetched successfully",
+    success: true,
+    user: {
+        id: user._id,
+        userName: user.userName,
+        email: user.email,
+        phone: user.phone,
+        role: user.role,
+    },
+})
+  }catch(error){
+    console.error("Error in getProfileController:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+}
 
 
