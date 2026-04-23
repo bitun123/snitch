@@ -5,12 +5,14 @@ import { useSelector } from 'react-redux';
 
 function Dashboard() {
     const { fetchAllProducts } = useProduct();
-    const sellerProduct  = useSelector((state) => state.product);
+    const sellerProducts = useSelector((state) => state.product.allProducts);
+
+
     useEffect(() => {
         fetchAllProducts();
     }, []);
 
-    console.log(sellerProduct);
+    console.log(sellerProducts);
 
     return (
         <div>Dashboard</div>

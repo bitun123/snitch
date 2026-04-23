@@ -2,6 +2,7 @@ import userModel from "../models/user.model.js";
 import { config } from "../config/config.js";
 import jwt from "jsonwebtoken";
 
+
 // helper function to send response
 async function withSendTokenResponse(user, res, message) {
   const token = jwt.sign(
@@ -30,6 +31,7 @@ async function withSendTokenResponse(user, res, message) {
     },
   });
 }
+
 
 // register controller
 export const registerController = async (req, res) => {
@@ -61,6 +63,7 @@ export const registerController = async (req, res) => {
   }
 };
 
+
 //Login controller
 export const loginController = async (req, res) => {
   try {
@@ -90,6 +93,7 @@ export const loginController = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+
 
 // Google OAuth callback controller
 export const googleCallbackController = async (req, res) => {
@@ -128,3 +132,7 @@ export const googleCallbackController = async (req, res) => {
     throw new Error("Google authentication failed: " + error.message);
   }
 };
+
+
+
+

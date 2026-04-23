@@ -33,8 +33,6 @@ const Field = ({ children }) => (
 );
 
 
-
-
 function CreateProducts() {
     const navigate = useNavigate();
     const { createNewProduct } = useProduct();
@@ -233,4 +231,9 @@ function CreateProducts() {
     );
 }
 
+
+
 export default CreateProducts;
+
+
+

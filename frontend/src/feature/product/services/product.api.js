@@ -25,7 +25,7 @@ export const createProduct = async (productData) => {
 
 export const getAllProducts = async () => {
     try {
-        const response = await productApi.get("/products");
+        const response = await productApi.get("/get-all-products");
         return response.data;
     } catch (error) {
         console.error("Error fetching all products:", error);

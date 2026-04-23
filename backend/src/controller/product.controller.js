@@ -58,21 +58,30 @@ export const createProductController = async (req, res) => {
 
 export const getAllProductsController = async (req, res) => {
     try {
-        const seller = req.User._id;
+        const sellerId = req.user._id;
 
-        const products = await productModel.find({ seller: seller._id });
+        if (!sellerId) {
+            return res.status(401).json({
+                message: "Unauthorized",
+                success: false
+            });
+        }
+
+        console.log("Fetching products for seller:", sellerId); // ✅ fixed
+
+        const products = await productModel.find({ seller: sellerId }); // ✅ fixed
 
         res.status(200).json({
             message: "Products fetched successfully",
             products
-        })
+        });
 
     } catch (error) {
         console.error("Error fetching products:", error);
-        res.status(500).json({
-            message: "Error fetching products",
-            error
-        });
 
+        return res.status(500).json({
+            message: "Error fetching products",
+            error: error.message
+        });
     }
-}
+};

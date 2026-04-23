@@ -21,6 +21,7 @@ export const useProduct = () => {
     async function fetchAllProducts() {
         try {
             dispatch(setLoading(true));
+            console.log("Fetching all products...");
             const data = await getAllProducts();
             dispatch(setAllProducts(data));
         } catch (error) {

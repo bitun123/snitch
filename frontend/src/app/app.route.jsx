@@ -16,15 +16,17 @@ export const routes = createBrowserRouter([
     }, {
         path: '/register',
         element: <Register />
-    },{
-        path:'/seller',
-        children:[
+    },
+
+    {
+        path: '/seller',
+        children: [
             {
-                path:"/seller/create-product",
-                element:<CreateProducts/>
-            }   ,{
-                path:"/dashboard",
-                element:<Dashboard/>
+                path: "/seller/create-product",
+                element: <CreateProducts />
+            }, {
+                path: "/seller/dashboard",
+                element: <Dashboard />
             }
         ]
     }

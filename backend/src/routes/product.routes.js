@@ -15,7 +15,7 @@ const productRouter = Router();
  */
 
 
-productRouter.post("/create/product", authenticateSeller, upload.array("images", 5), createProductController);
+productRouter.post("/create/product", authenticateSeller, upload.array("images", 5), productCreationValidationRules, createProductController);
 
 
 
@@ -28,6 +28,6 @@ productRouter.post("/create/product", authenticateSeller, upload.array("images",
 
 
 
-productRouter.get("/products",authenticateSeller, getAllProductsController);
+productRouter.get("/get-all-products",authenticateSeller, getAllProductsController);
 
 export default productRouter;
