@@ -38,3 +38,15 @@ export const login = async ({ email, password }) => {
     throw error.response ? error.response.data : { message: "Network error" };
   }
 };
+
+
+
+export const getProfile = async () => {
+  try {
+    const response = await api_Instance.get("/profile");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching profile:", error);
+    throw error.response ? error.response.data : { message: "Network error" };
+  }
+}

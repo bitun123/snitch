@@ -1,15 +1,23 @@
 
 import { RouterProvider } from 'react-router-dom'
 import { routes } from './App.Route'
-import { store } from './store'
-import { Provider } from 'react-redux'
+
+import { useAuth } from '../feature/auth/hooks/useAuth'
+import { useEffect } from 'react'
+import { useSelector } from 'react-redux';
 
 function App() {
-  return (
-    <Provider store={store}>
 
-      <RouterProvider router={routes} />
-    </Provider>
+  const { handleGetProfile } = useAuth();
+const user = useSelector((state) => state.auth.user);
+console.log("Current user:", user);
+  useEffect(() => {
+    handleGetProfile();
+  }, []);
+
+  return (
+    <RouterProvider router={routes} />
+
   )
 }
 
