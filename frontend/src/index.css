@@ -1,1 +1,32 @@
 @import 'tailwindcss';
+
+@theme {
+  --font-manrope: "Manrope", sans-serif;
+  --font-inter: "Inter", sans-serif;
+  --font-serif: "Noto Serif", serif;
+  
+  --color-brand: #000000;
+  --color-background: #f8fafa;
+  --color-surface: #ffffff;
+  --color-surface-low: #f2f4f4;
+  --color-border: #e1e3e3;
+  --color-muted: #474747;
+  --color-text: #191c1d;
+}
+
+@layer base {
+  body {
+    @apply bg-[#f8fafa] text-[#191c1d];
+    font-family: var(--font-inter);
+    font-style: normal !important;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    font-style: normal !important;
+  }
+
+  * {
+    font-style: normal !important;
+  }
+}
