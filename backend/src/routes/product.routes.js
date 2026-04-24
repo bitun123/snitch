@@ -1,8 +1,9 @@
 import {Router} from 'express';
 import { authenticateSeller } from '../middleware/auth.middleware.js';
-import { createProductController,getAllProductsController} from '../controller/product.controller.js';
+import { createProductController,getAllSellerProductsController,getAllProductsController} from '../controller/product.controller.js';
 import { upload } from '../middleware/multer.js';
 import {productCreationValidationRules} from '../validator/product.validator.js';
+import { get } from 'mongoose';
 
 const productRouter = Router();
 
@@ -19,7 +20,7 @@ productRouter.post("/create/product", authenticateSeller, upload.array("images",
 
 
 
-/**@
+/**
  * @route GET /api/products
  * @desc Get all products with pagination and filtering
  * @access Public
@@ -27,7 +28,17 @@ productRouter.post("/create/product", authenticateSeller, upload.array("images",
  */
 
 
+productRouter.get("/get-all-products",authenticateSeller, getAllSellerProductsController);
 
-productRouter.get("/get-all-products",authenticateSeller, getAllProductsController);
+
+
+/**
+ * @route GET /api/products
+ * @desc Get all products (public)
+ * @access Public
+ */
+
+
+productRouter.get("/", getAllProductsController);
 
 export default productRouter;

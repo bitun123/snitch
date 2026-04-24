@@ -9,14 +9,16 @@ import { useSelector } from 'react-redux';
 function App() {
 
   const { handleGetProfile } = useAuth();
-const user = useSelector((state) => state.auth.user);
-console.log("Current user:", user);
+  const user = useSelector((state) => state.auth.user);
+  console.log("Current user:", user);
   useEffect(() => {
     handleGetProfile();
   }, []);
 
   return (
+
     <RouterProvider router={routes} />
+
 
   )
 }

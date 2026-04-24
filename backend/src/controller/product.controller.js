@@ -2,6 +2,7 @@
 import productModel from "../models/product.model.js";
 import { uploadFile } from "../services/storage.services.js";
 
+//* Controller to create a new product */
 export const createProductController = async (req, res) => {
 
     try {
@@ -55,8 +56,8 @@ export const createProductController = async (req, res) => {
 
 }
 
-
-export const getAllProductsController = async (req, res) => {
+//* Controller to get all products of a seller*/
+export const getAllSellerProductsController = async (req, res) => {
     try {
         const sellerId = req.user._id;
 
@@ -85,3 +86,30 @@ export const getAllProductsController = async (req, res) => {
         });
     }
 };
+
+//* Controller to get all products (public)*/
+export const getAllProductsController = async (req, res) => {
+try {
+    const products = await productModel.find();
+
+    if(!products){
+        return res.status(404).json({
+            message: "No products found",
+            success: false
+        })
+    }
+
+    res.status(200).json({
+        message: "Products fetched successfully",
+        success: true,
+        products
+    })
+} catch (error) {
+    console.error("Error fetching products:", error);
+    res.status(500).json({
+        message: "Error fetching products",
+        success: false,
+        error: error.message
+    });
+}
+}
