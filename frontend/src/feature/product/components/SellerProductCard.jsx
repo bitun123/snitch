@@ -1,12 +1,17 @@
 import React from 'react';
 import { Edit3, Trash2 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const SellerProductCard = ({ product }) => {
+
+    const navigate = useNavigate();
     const { title, description, price, images, createdAt } = product;
     const mainImage = images?.[0]?.url || 'https://via.placeholder.com/400x500?text=No+Image';
 
     return (
-        <div className="group relative bg-white border border-gray-100 rounded-lg overflow-hidden hover:shadow-lg hover:border-gray-200 transition-all duration-300">
+        <div 
+        onClick={() => navigate(`/seller/product/${product._id}`)}
+        className="group relative bg-white border border-gray-100 rounded-lg overflow-hidden hover:shadow-lg hover:border-gray-200 transition-all duration-300">
 
             {/* Image */}
             <div className="relative aspect-[6/5] overflow-hidden bg-gray-50">

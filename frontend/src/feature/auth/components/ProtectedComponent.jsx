@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom';
 
-function ProtectedComponent({children}) {
+function ProtectedComponent({ children, role = "buyer" }) {
 const user=   useSelector((state) => state.auth.user)
 const loading = useSelector((state) => state.auth.loading)
 if (loading) {
@@ -12,6 +12,11 @@ if (loading) {
 if(!user) {
     return <Navigate to="/login" replace />;
 }
+
+
+    if (user.role !== role) {
+        return <Navigate to="/" />
+    }
 
   return (
     <div>

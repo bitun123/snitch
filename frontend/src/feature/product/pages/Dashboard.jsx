@@ -8,14 +8,17 @@ import SellerProductCard from '../components/SellerProductCard';
 function Dashboard() {
     const navigate = useNavigate();
     const { fetchAllProducts } = useProduct();
-    const { allProducts: sellerData, loading, error } = useSelector((state) => state.product);
 
-    const products = sellerData?.products || [];
+    const allSellerProducts = useSelector((state) => state.product.allSellerProducts);
+    const loading = useSelector((state) => state.product.loading);
+    const error = useSelector((state) => state.product.error);
 
     useEffect(() => {
         fetchAllProducts();
     }, []);
 
+const products = allSellerProducts.products
+console.log("Products in Dashboard:", products);
     return (
         <div className="min-h-screen bg-gray-50 text-gray-800 antialiased pb-24">
 
@@ -34,7 +37,7 @@ function Dashboard() {
                                 <Activity size={12} className="text-gray-700" />
                                 <div className="flex flex-col">
                                     <span className="text-[7px] font-bold uppercase tracking-widest text-gray-400">Inventory</span>
-                                    <span className="text-xs font-black text-gray-900">{products.length} Items</span>
+                                    <span className="text-xs font-black text-gray-900">{products?.length} Items</span>
                                 </div>
                             </div>
                         </div>
@@ -92,9 +95,9 @@ function Dashboard() {
                             </div>
                         ))}
                     </div>
-                ) : products.length > 0 ? (
+                ) : products?.length > 0 ? (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
-                        {products.map((product) => (
+                        {products?.map((product) => (
                             <SellerProductCard key={product._id} product={product} />
                         ))}
                     </div>
