@@ -188,6 +188,29 @@ function ProductDetails() {
                                             {activeImage + 1} / {images.length}
                                         </div>
                                     )}
+
+                                    {/* Image Navigation Buttons */}
+                                    {images.length > 1 && (
+                                        <>
+                                            {/* Previous Button */}
+                                            <button
+                                                onClick={handlePrevImage}
+                                                className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-white/80 hover:bg-white text-gray-900 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-full shadow-md hover:shadow-lg"
+                                                aria-label="Previous image"
+                                            >
+                                                <ChevronLeft size={20} />
+                                            </button>
+
+                                            {/* Next Button */}
+                                            <button
+                                                onClick={handleNextImage}
+                                                className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 flex items-center justify-center bg-white/80 hover:bg-white text-gray-900 opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-full shadow-md hover:shadow-lg"
+                                                aria-label="Next image"
+                                            >
+                                                <ChevronRight size={20} />
+                                            </button>
+                                        </>
+                                    )}
                                 </>
                             ) : (
                                 <div className="w-full h-full flex items-center justify-center">
