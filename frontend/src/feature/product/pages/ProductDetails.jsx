@@ -141,7 +141,7 @@ function ProductDetails() {
                     <div className="flex flex-col gap-4">
 
                         {/* Hero Image */}
-                        <div className="relative group overflow-hidden rounded-lg bg-gray-50 aspect-[3/4]">
+                        <div className="relative group overflow-hidden rounded-lg bg-gray-50 aspect-[4/5]">
                             {images?.length > 0 ? (
                                 <>
                                     <img
