@@ -1,12 +1,18 @@
 import React from 'react';
 import { ShoppingBag, Eye } from 'lucide-react';
+import { useNavigate } from 'react-router';
 
 const PublicProductCard = ({ product }) => {
-    const { title, description, price, images } = product;
+    const navigate = useNavigate();
+    console.log('Rendering PublicProductCard for product:', product);
+    const { title, description, price, images, _id
+    } = product;
     const mainImage = images?.[0]?.url || null;
 
     return (
-        <div className="group relative bg-white border border-gray-100 rounded-lg overflow-hidden hover:shadow-lg hover:border-gray-200 transition-all duration-300">
+        <div
+            onClick={() => navigate(`/product/${_id}`)}
+            className="group relative bg-white border border-gray-100 rounded-lg overflow-hidden hover:shadow-lg hover:border-gray-200 transition-all duration-300">
 
             {/* Image */}
             <div className="relative aspect-[3/4] bg-gray-50 overflow-hidden">
