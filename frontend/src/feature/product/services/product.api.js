@@ -48,3 +48,15 @@ export const getAllPublicProducts = async () => {
         throw error;
     }
 }
+
+
+// API function to get product details by ID
+export const getProductDetails = async (productId) => {
+    try {
+        const response = await productApi.get(`/details/${productId}`);
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching product details:", error);
+        throw error;
+    }
+}

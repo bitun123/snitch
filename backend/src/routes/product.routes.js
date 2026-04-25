@@ -1,6 +1,6 @@
 import {Router} from 'express';
 import { authenticateSeller } from '../middleware/auth.middleware.js';
-import { createProductController,getAllSellerProductsController,getAllProductsController} from '../controller/product.controller.js';
+import { createProductController,getAllSellerProductsController,getAllProductsController ,getProductDetailsController} from '../controller/product.controller.js';
 import { upload } from '../middleware/multer.js';
 import {productCreationValidationRules} from '../validator/product.validator.js';
 import { get } from 'mongoose';
@@ -40,5 +40,14 @@ productRouter.get("/get-all-products",authenticateSeller, getAllSellerProductsCo
 
 
 productRouter.get("/", getAllProductsController);
+
+
+
+/**
+ * @route GET /api/products/details/:productId
+ * @desc Get product details by ID
+ * @access Public
+ */
+productRouter.get("/details/:productId", getProductDetailsController);
 
 export default productRouter;

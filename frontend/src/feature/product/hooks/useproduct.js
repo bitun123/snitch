@@ -1,6 +1,6 @@
-import {createProduct,getAllSellerProducts,getAllPublicProducts} from "../services/product.api";
+import {createProduct,getAllSellerProducts,getAllPublicProducts ,getProductDetails} from "../services/product.api";
 import {useDispatch} from "react-redux";
-import { setAllSellerProducts, setLoading, setError,setProduct} from "../state/product.slice";
+import { setAllSellerProducts, setLoading, setError,setProduct, setProductDetails} from "../state/product.slice";
 
 export const useProduct = () => {
     const dispatch = useDispatch();
@@ -52,5 +52,21 @@ export const useProduct = () => {
     }
 
 
-    return {createNewProduct, fetchAllProducts, getAllProducts };
+    // Function to fetch product details by ID
+
+    async function handleProductDetails(productId) {
+      try {
+        dispatch(setLoading(true));
+        const data = await getProductDetails(productId);
+        dispatch(setProductDetails(data.product));
+      } catch (error) {
+        console.error("Error fetching product details:", error);
+        dispatch(setError(error.message));
+        throw error;
+      } finally {
+        dispatch(setLoading(false));
+      }
+    }
+
+    return {createNewProduct, fetchAllProducts, getAllProducts, handleProductDetails};
 }

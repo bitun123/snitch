@@ -8,6 +8,7 @@ initialState:{
     products:[],
     loading: false,
     error: null,
+    productDetails: null
 },
 
 reducers:{
@@ -23,9 +24,12 @@ reducers:{
     },
     setProduct:(state, action) => {
         state.products = action.payload;
+    },
+    setProductDetails:(state, action) => {
+        state.productDetails = action.payload;
     }
 
 }});
 
-export const {setAllSellerProducts, setLoading, setError, setProduct} = productSlice.actions;
+export const {setAllSellerProducts, setLoading, setError, setProduct, setProductDetails} = productSlice.actions;
 export default productSlice.reducer;
