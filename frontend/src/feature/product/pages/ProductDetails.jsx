@@ -47,7 +47,7 @@ function ProductDetails() {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 animate-pulse">
                         {/* Image skeleton */}
                         <div className="space-y-4">
-                            <div className="aspect-[4/5] bg-gray-100 rounded-lg" />
+                            <div className="aspect-square bg-gray-100 rounded-lg" />
                             <div className="grid grid-cols-4 gap-3">
                                 {[1, 2, 3, 4].map((n) => (
                                     <div key={n} className="aspect-square bg-gray-100 rounded" />
@@ -132,16 +132,41 @@ function ProductDetails() {
             </div>
 
             {/* ── Main Grid ── */}
-            <main className="max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-14 py-8 sm:py-12 lg:py-16">
+            <main className="max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-14 py-8 sm:py-12 lg:py-8">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 xl:gap-28">
 
                     {/* ════════════════════════════════════
                         LEFT — Image Gallery
                     ════════════════════════════════════ */}
-                    <div className="flex flex-col gap-4">
+                    {/* Gallery wrapper: vertical thumbnails LEFT + hero image RIGHT */}
+                    <div className="flex lg:flex-row gap-3 sm:gap-4 flex-col-reverse">
 
-                        {/* Hero Image */}
-                        <div className="relative group overflow-hidden rounded-lg bg-gray-50 aspect-[4/5]">
+                        {/* ── Vertical Thumbnail Strip ── */}
+                        {images?.length > 1 && (
+                            <div className="flex lg:flex-col flex-row gap-2.5 lg:w-20 sm:w-24 shrink-0 lg:justify-normal justify-center w-[rem] ">
+                                {images.map((img, idx) => (
+                                    <button
+                                        key={img._id || idx}
+                                        onClick={() => setActiveImage(idx)}
+                                        className={`aspect-square overflow-hidden rounded transition-all duration-200 ${
+                                            idx === activeImage
+                                                ? 'ring-2 ring-gray-900 ring-offset-1 opacity-100'
+                                                : 'opacity-50 hover:opacity-80 hover:ring-1 hover:ring-gray-300 hover:ring-offset-1'
+                                        }`}
+                                        aria-label={`Thumbnail ${idx + 1}`}
+                                    >
+                                        <img
+                                            src={img.url}
+                                            alt={`Thumbnail ${idx + 1}`}
+                                            className="w-full h-full object-cover"
+                                        />
+                                    </button>
+                                ))}
+                            </div>
+                        )}
+
+                        {/* ── Hero Image ── */}
+                        <div className="relative group overflow-hidden rounded-lg bg-gray-50 aspect-square flex-1 min-w-0">
                             {images?.length > 0 ? (
                                 <>
                                     <img
@@ -157,46 +182,12 @@ function ProductDetails() {
                                         <div className="absolute inset-0 bg-gray-100 animate-pulse" />
                                     )}
 
-                                    {/* Navigation Arrows */}
+                                    {/* Image counter badge */}
                                     {images.length > 1 && (
-                                        <>
-                                            <button
-                                                onClick={handlePrevImage}
-                                                className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-white/90 hover:bg-white rounded flex items-center justify-center shadow-sm opacity-0 group-hover:opacity-100 transition-all duration-200 hover:scale-105"
-                                                aria-label="Previous image"
-                                            >
-                                                <ChevronLeft size={16} className="text-gray-700" />
-                                            </button>
-                                            <button
-                                                onClick={handleNextImage}
-                                                className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 bg-white/90 hover:bg-white rounded flex items-center justify-center shadow-sm opacity-0 group-hover:opacity-100 transition-all duration-200 hover:scale-105"
-                                                aria-label="Next image"
-                                            >
-                                                <ChevronRight size={16} className="text-gray-700" />
-                                            </button>
-
-                                            {/* Dot indicators */}
-                                            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5">
-                                                {images.map((_, idx) => (
-                                                    <button
-                                                        key={idx}
-                                                        onClick={() => setActiveImage(idx)}
-                                                        className={`rounded-full transition-all duration-300 ${
-                                                            idx === activeImage
-                                                                ? 'w-5 h-1.5 bg-gray-900'
-                                                                : 'w-1.5 h-1.5 bg-white/70 hover:bg-white'
-                                                        }`}
-                                                        aria-label={`Go to image ${idx + 1}`}
-                                                    />
-                                                ))}
-                                            </div>
-                                        </>
+                                        <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded text-[9px] font-black tracking-widest text-gray-600 uppercase">
+                                            {activeImage + 1} / {images.length}
+                                        </div>
                                     )}
-
-                                    {/* Image counter */}
-                                    <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded text-[9px] font-black tracking-widest text-gray-600 uppercase">
-                                        {activeImage + 1} / {images.length}
-                                    </div>
                                 </>
                             ) : (
                                 <div className="w-full h-full flex items-center justify-center">
@@ -207,29 +198,6 @@ function ProductDetails() {
                             )}
                         </div>
 
-                        {/* Thumbnails */}
-                        {images?.length > 1 && (
-                            <div className="grid grid-cols-4 gap-3">
-                                {images.map((img, idx) => (
-                                    <button
-                                        key={img._id || idx}
-                                        onClick={() => setActiveImage(idx)}
-                                        className={`aspect-square overflow-hidden rounded transition-all duration-200 ${
-                                            idx === activeImage
-                                                ? 'ring-2 ring-gray-900 ring-offset-1'
-                                                : 'opacity-60 hover:opacity-90 hover:ring-1 hover:ring-gray-300 hover:ring-offset-1'
-                                        }`}
-                                        aria-label={`Thumbnail ${idx + 1}`}
-                                    >
-                                        <img
-                                            src={img.url}
-                                            alt={`Thumbnail ${idx + 1}`}
-                                            className="w-full h-full object-cover"
-                                        />
-                                    </button>
-                                ))}
-                            </div>
-                        )}
                     </div>
 
                     {/* ════════════════════════════════════
