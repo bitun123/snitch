@@ -6,54 +6,55 @@ const SellerProductCard = ({ product }) => {
     const mainImage = images?.[0]?.url || 'https://via.placeholder.com/400x500?text=No+Image';
 
     return (
-        <div className="rounded-lg group relative bg-white border border-[#e1e3e3] hover:shadow-[0_10px_40px_rgba(25,28,29,0.06)] transition-all duration-300 overflow-hidden">
-            {/* Image Container */}
-            <div className="relative aspect-[6/5] overflow-hidden bg-[#f2f4f4]">
+        <div className="group relative bg-white border border-gray-100 rounded-lg overflow-hidden hover:shadow-lg hover:border-gray-200 transition-all duration-300">
+
+            {/* Image */}
+            <div className="relative aspect-[6/5] overflow-hidden bg-gray-50">
                 <img
                     src={mainImage}
                     alt={title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                
-                {/* Overlay with Actions */}
-                <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-3 backdrop-blur-[4px]">
-                    <button className="p-3 bg-black text-white shadow-lg hover:bg-[#3c3b3b] transition-all duration-200">
-                        <Edit3 size={16} />
+
+                {/* Overlay Actions */}
+                <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3 backdrop-blur-[3px]">
+                    <button className="p-3 bg-gray-900 text-white rounded hover:bg-gray-700 transition-colors shadow-md">
+                        <Edit3 size={15} />
                     </button>
-                    <button className="p-3 bg-white text-red-600 shadow-lg border border-red-100 hover:bg-red-50 transition-all duration-200">
-                        <Trash2 size={16} />
+                    <button className="p-3 bg-white text-red-500 rounded border border-red-100 hover:bg-red-50 transition-colors shadow-md">
+                        <Trash2 size={15} />
                     </button>
                 </div>
 
                 {/* Status Badge */}
-                <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1.5 bg-black text-white text-[9px] font-bold uppercase tracking-widest">
+                <div className="absolute top-3 left-3">
+                    <span className="px-2.5 py-1 bg-gray-900 text-white text-[9px] font-black uppercase tracking-widest rounded">
                         Live
                     </span>
                 </div>
             </div>
 
             {/* Content */}
-            <div className="p-4 space-y-4">
-                <div className="space-y-1.5">
-                    <p className="text-[9px] font-bold uppercase tracking-widest text-[#474747]">
+            <div className="p-4 space-y-3">
+                <div className="space-y-1">
+                    <p className="text-[9px] font-bold uppercase tracking-widest text-gray-400">
                         {new Date(createdAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
                     </p>
-                    <h3 className="text-xl font-bold text-black group-hover:text-[#474747] transition-colors duration-200 line-clamp-1">
+                    <h3 className="text-lg font-bold text-gray-900 group-hover:text-gray-600 transition-colors duration-200 line-clamp-1 m-0">
                         {title}
                     </h3>
                 </div>
 
-                <p className="text-[12px] font-medium text-[#474747] line-clamp-2 leading-relaxed">
+                <p className="text-[12px] font-medium text-gray-500 line-clamp-2 leading-relaxed">
                     {description}
                 </p>
 
-                <div className="pt-5 border-t border-[#f2f4f4] flex justify-between items-center">
-                    <div className="flex flex-col">
-                        <span className="text-[10px] font-bold text-[#474747] uppercase tracking-tighter">{price.currency}</span>
-                        <span className="text-2xl font-black text-black leading-none">{price.amount.toLocaleString()}</span>
+                <div className="pt-4 border-t border-gray-50 flex justify-between items-center">
+                    <div className="flex flex-col gap-0">
+                        <span className="text-[10px] font-bold text-gray-400 uppercase tracking-tight">{price.currency}</span>
+                        <span className="text-2xl font-black text-gray-900 leading-none">{price.amount.toLocaleString()}</span>
                     </div>
-                    <button className="px-4 py-2 bg-[#eceeee] text-black text-[9px] font-black uppercase tracking-widest hover:bg-black hover:text-white transition-all duration-200">
+                    <button className="px-4 py-2 bg-gray-100 text-gray-700 text-[9px] font-black uppercase tracking-widest hover:bg-gray-900 hover:text-white transition-all duration-200 rounded">
                         View Item
                     </button>
                 </div>

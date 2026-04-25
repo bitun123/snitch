@@ -12,12 +12,11 @@ import GoogleAuthButton from '../components/GoogleAuthButton';
 
 function Register() {
 
-  const navigate = useNavigate(); // Initialize useNavigate for potential future navigation needs
+  const navigate = useNavigate();
 
   const authState = useSelector((state) => state.auth);
 
   const { loading, error } = authState;
-
 
   const { handleRegister } = useAuth();
   const {
@@ -32,12 +31,10 @@ function Register() {
     console.log('Register Data:', data);
 
     const { userName, email, password, phone, isSeller } = data;
-    // Business logic placeholder
 
     try {
       const res = handleRegister({ userName, email, password, phone, isSeller });
       console.log('Registration successful:', res);
-      // Potential navigation after successful registration can be added here, e.g.:
       navigate('/login');
     } catch (error) {
       throw new Error('Registration failed: ' + error.message);
@@ -52,7 +49,7 @@ function Register() {
       alternativeLink="/login"
       linkText="SIGN IN"
     >
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-2">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-1">
         <AuthInput
           label="Username"
           name="userName"
@@ -114,7 +111,7 @@ function Register() {
           }}
         />
 
-        <div className="pt-2 pb-6">
+        <div className="py-2">
           <AuthToggle
             label="Register as Seller"
             description="Start selling your own collections on Snitch."
@@ -123,14 +120,11 @@ function Register() {
           />
         </div>
 
-
-        {
-          error && (
-            <p className="mt-2 text-[10px] text-red-500 font-inter uppercase tracking-tighter">
-              {error}
-            </p>
-          )
-        }
+        {error && (
+          <p className="mt-2 text-[10px] text-red-500 uppercase tracking-tight">
+            {error}
+          </p>
+        )}
 
         <div className="pt-4">
           <AuthButton type="submit" disabled={!isValid}>
@@ -138,10 +132,14 @@ function Register() {
           </AuthButton>
         </div>
 
-        <p className="mt-6 text-[10px] text-[#484847] text-center leading-relaxed">
-          By creating an account, you agree to our <span className="text-[#adaaaa] underline cursor-pointer">Terms of Service</span> and <span className="text-[#adaaaa] underline cursor-pointer">Privacy Policy</span>.
+        <p className="mt-5 text-[10px] text-gray-400 text-center leading-relaxed">
+          By creating an account, you agree to our{' '}
+          <span className="text-gray-600 underline cursor-pointer">Terms of Service</span>{' '}
+          and{' '}
+          <span className="text-gray-600 underline cursor-pointer">Privacy Policy</span>.
         </p>
-        <GoogleAuthButton/> 
+
+        <GoogleAuthButton />
       </form>
     </AuthLayout>
   );

@@ -14,7 +14,7 @@ function Login() {
   const { handleLogin } = useAuth();
   const authState = useSelector((state) => state.auth);
   const { loading, error } = authState;
-  const navigate = useNavigate(); // Initialize useNavigate for potential future navigation needs
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -25,18 +25,13 @@ function Login() {
 
   const onSubmit = async (data) => {
     const { email, password } = data;
-    // Business logic placeholder
-
     try {
       const res = handleLogin({ email, password });
       console.log('Login successful:', res);
-      // Potential navigation after successful login can be added here, e.g.:
       navigate('/');
-
     } catch (error) {
       throw new Error('Login failed: ' + error.message);
     }
-
   };
 
   return (
@@ -80,35 +75,34 @@ function Login() {
             }}
           />
           <div className="absolute right-0 top-0">
-            <a href="#" className="text-[10px] text-[#484847] hover:text-[#E3FF00] transition-colors font-bold uppercase tracking-widest">
+            <a href="#" className="text-[10px] text-gray-400 hover:text-gray-700 transition-colors font-bold uppercase tracking-widest no-underline">
               Forgot?
             </a>
           </div>
         </div>
-        {
-          error && (
-            <p className="mt-2 text-[10px] text-red-500 font-inter uppercase tracking-tighter">
-              {error}
-            </p>
-          )
-        }
-        <div className="pt-6">
+
+        {error && (
+          <p className="mt-2 text-[10px] text-red-500 uppercase tracking-tight">
+            {error}
+          </p>
+        )}
+
+        <div className="pt-4">
           <AuthButton type="submit" disabled={!isValid}>
             {loading ? 'Logging in...' : 'SIGN IN'}
           </AuthButton>
         </div>
 
-        <div className="mt-8 flex flex items-center justify-center space-x-4">
-          <div className="h-[1px] w-full bg-[#484847]/30"></div>
-          <span className="text-[10px] text-[#484847] font-bold uppercase tracking-[0.2em] whitespace-nowrap">
+        <div className="mt-8 flex items-center justify-center gap-4">
+          <div className="h-px w-full bg-gray-100" />
+          <span className="text-[10px] text-gray-400 font-bold uppercase tracking-[0.2em] whitespace-nowrap">
             Secure Login
           </span>
-         
-          <div className="h-[1px] w-full bg-[#484847]/30"></div>
+          <div className="h-px w-full bg-gray-100" />
         </div>
-         <GoogleAuthButton/>
+
+        <GoogleAuthButton />
       </form>
-      
     </AuthLayout>
   );
 }

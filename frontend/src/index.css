@@ -4,24 +4,29 @@
   --font-manrope: "Manrope", sans-serif;
   --font-inter: "Inter", sans-serif;
   --font-serif: "Noto Serif", serif;
-  
-  --color-brand: #000000;
-  --color-background: #f8fafa;
+
+  --color-brand: #111827;
+  --color-background: #ffffff;
   --color-surface: #ffffff;
-  --color-surface-low: #f2f4f4;
-  --color-border: #e1e3e3;
-  --color-muted: #474747;
-  --color-text: #191c1d;
+  --color-surface-low: #f9fafb;
+  --color-border: #e5e7eb;
+  --color-muted: #6b7280;
+  --color-text: #374151;
 }
 
 @layer base {
   body {
-    @apply bg-[#f8fafa] text-[#191c1d];
+    @apply bg-white text-gray-700;
     font-family: var(--font-inter);
     font-style: normal !important;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-serif);
     font-style: normal !important;
   }
@@ -29,4 +34,4 @@
   * {
     font-style: normal !important;
   }
-}
+}

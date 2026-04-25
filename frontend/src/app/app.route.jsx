@@ -6,32 +6,34 @@ import Dashboard from '../feature/product/pages/Dashboard'
 import ProtectedComponent from '../feature/auth/components/ProtectedComponent'
 import Home from '../feature/product/pages/Home'
 
-
 export const routes = createBrowserRouter([
     {
         path: '/',
-        element: <Home />
+        element: <Home />,
     },
     {
         path: '/login',
-        element: <Login />
-    }, {
-        path: '/register',
-        element: <Register />
+        element: <Login />,
     },
-
+    {
+        path: '/register',
+        element: <Register />,
+    },
     {
         path: '/seller',
         children: [
             {
-                path: "/seller/create-product",
-                element: <ProtectedComponent>
-                    <CreateProducts />
-                </ProtectedComponent>
-            }, {
-                path: "/seller/dashboard",
-                element: <Dashboard />
-            }
-        ]
-    }
+                path: '/seller/create-product',
+                element: (
+                    <ProtectedComponent>
+                        <CreateProducts />
+                    </ProtectedComponent>
+                ),
+            },
+            {
+                path: '/seller/dashboard',
+                element: <Dashboard />,
+            },
+        ],
+    },
 ])
