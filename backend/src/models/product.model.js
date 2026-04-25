@@ -34,6 +34,38 @@ const productSchema = new mongoose.Schema({
                 required:[true,"Please provide an image url for this product"],
             }
         }
+    ],
+    variants:[
+        {
+            images:[
+                {
+                    url:{
+                        type:String,
+                        required:[true,"Please provide an image url for this product variant"],
+                    }
+                }
+            ],
+            stock:{
+                type:Number,
+                required:[true,"Please provide a stock for this product variant"],
+                default:0,
+            },
+            attributes:{
+                type:Map,
+                of:String,
+            },
+            price:{
+                amount:{
+                    type:Number,
+                    required:[true,"Please provide a price for this product variant"],
+                },
+                currency:{
+                    type:String,
+                    enum:["USD","EUR","GBP","JPY","CNY","INR"],
+                    default:"INR",
+                },
+            }
+        }
     ]
 
 },{
