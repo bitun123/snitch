@@ -43,7 +43,6 @@ function Register() {
 
   return (
     <AuthLayout
-      title="Create Account"
       subtitle="Join the SNITCH tribe and redefine your style."
       alternativeText="Already have an account?"
       alternativeLink="/login"
@@ -114,7 +113,6 @@ function Register() {
         <div className="py-2">
           <AuthToggle
             label="Register as Seller"
-            description="Start selling your own collections on Snitch."
             name="isSeller"
             register={register}
           />
