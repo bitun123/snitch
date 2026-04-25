@@ -1,11 +1,13 @@
 import axios from "axios";
 
+
+// Create an Axios instance for product-related API calls
 const productApi = axios.create({
     baseURL: "/api/products",
     withCredentials: true,
 })
 
-
+// API function to create a new product
 export const createProduct = async (productData) => {
 
 
@@ -23,9 +25,23 @@ export const createProduct = async (productData) => {
     }
 }
 
-export const getAllProducts = async () => {
+
+// API function to get all products of a seller
+export const getAllSellerProducts = async () => {
     try {
         const response = await productApi.get("/get-all-products");
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching all products:", error);
+        throw error;
+    }
+}
+
+
+// API function to get all products (public)
+export const getAllPublicProducts = async () => {
+    try {
+        const response = await productApi.get("/");
         return response.data;
     } catch (error) {
         console.error("Error fetching all products:", error);
