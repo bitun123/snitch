@@ -142,3 +142,29 @@ export const getProductDetailsController = async (req,res)=>{
         });
     }
 }
+
+
+//* Controller to get all added product variants of a seller*/
+export const getAddedProductsVariantController = async (req,res)=>{
+
+try {
+    const files = req.files;
+
+    const images = [];
+
+    if(files || files.length !== 0){
+        (await Promise.all(files.map(async (file)=>{
+            const image = await uploadFile({
+                buffer: file.buffer,
+                fileName: file.originalname
+            })
+            return image
+        }))).map((image)=>{
+            images.push(image);
+        })
+    }
+} catch (error) {
+    
+}
+
+}
