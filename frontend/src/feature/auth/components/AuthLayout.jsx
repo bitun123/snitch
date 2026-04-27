@@ -46,7 +46,7 @@ const AuthLayout = ({
   return (
     <div className="w-full min-h-screen overflow-hidden flex  font-[Inter,sans-serif] selection:bg-red-600 selection:text-white">
       {/* ─── LEFT PANEL ─────────────────────────────────────────── */}
-      <div className="min-h-screen  flex flex-col w-full lg:w-[45%] bg-white px-8 sm:px-10 lg:px-14 py-6 overflow-hidden">
+      <div className="min-h-screen  flex flex-col w-full lg:w-[45%] bg-white px-8 sm:px-10 lg:px-14 py-2 overflow-hidden">
 
         {/* Brand */}
         <div className="mb-2 flex-shrink-0">
@@ -55,11 +55,11 @@ const AuthLayout = ({
               SNITCH<span className="text-gray-300">.</span>
             </h1>
           </Link>
-          <div className="mt-2 h-px w-10 bg-gray-100" />
+          <div className="mt-1 h-px w-10 bg-gray-100" />
         </div>
 
         {/* Title block */}
-        <div className="mb-2 lg:mb-2 flex-shrink-0 ">
+        <div className="mb-2 lg:mb-0 flex-shrink-0 ">
           <h2 className="text-2xl font-bold font-[Manrope,sans-serif] text-gray-900 mb-1 mt-0 leading-tight">
             {title}
           </h2>
@@ -86,7 +86,7 @@ const AuthLayout = ({
       </div>
 
       {/* ─── RIGHT PANEL — Human fashion model ───────────────────── */}
-      <div className="hidden lg:flex lg:w-[55%] relative overflow-hidden h-screen">
+      <div className="hidden lg:flex lg:w-[55%] relative overflow-hidden h-screen ">
 
         {/* Back button */}
 
