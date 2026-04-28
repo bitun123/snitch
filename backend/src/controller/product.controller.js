@@ -148,6 +148,22 @@ export const getProductDetailsController = async (req,res)=>{
 export const getAddedProductsVariantController = async (req,res)=>{
 
 try {
+
+
+const productId = req.params.productId;
+
+const product  = await productModel.findOne({
+    _id: productId,
+    seller: req.user._id
+})
+
+if(!product){
+    return res.status(404).json({
+        message: "Product not found",
+        success: false
+    })
+}
+
     const files = req.files;
 
     const images = [];
@@ -163,6 +179,11 @@ try {
             images.push(image);
         })
     }
+
+
+    const price  = req.body.priceAmount
+    const stock = req.body.stock
+    const attributes =JSON.parse(req.body.attributes || "{}")
 } catch (error) {
     
 }

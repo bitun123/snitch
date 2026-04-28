@@ -1,6 +1,6 @@
 import {Router} from 'express';
 import { authenticateSeller } from '../middleware/auth.middleware.js';
-import { createProductController,getAllSellerProductsController,getAllProductsController ,getProductDetailsController} from '../controller/product.controller.js';
+import { createProductController,getAllSellerProductsController,getAllProductsController ,getProductDetailsController ,getAddedProductsVariantController} from '../controller/product.controller.js';
 import { upload } from '../middleware/multer.js';
 import {productCreationValidationRules} from '../validator/product.validator.js';
 import { get } from 'mongoose';
@@ -50,4 +50,13 @@ productRouter.get("/", getAllProductsController);
  */
 productRouter.get("/details/:productId", getProductDetailsController);
 
+
+
+/**
+ * @route POST /api/products/:productId/variants
+ * @desc Add a new variant to an existing product
+ * @access Private (Seller only)
+ * @body { price: Number, stock: Number, attributes: Object, images: Array of Files }
+ */
+productRouter.post("/:productId/variants",authenticateSeller, upload.array("images", 5),getAddedProductsVariantController )
 export default productRouter;
