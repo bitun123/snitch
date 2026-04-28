@@ -59,4 +59,7 @@ productRouter.get("/details/:productId", getProductDetailsController);
  * @body { price: Number, stock: Number, attributes: Object, images: Array of Files }
  */
 productRouter.post("/:productId/variants",authenticateSeller, upload.array("images", 5),getAddedProductsVariantController )
+
+
+
 export default productRouter;
