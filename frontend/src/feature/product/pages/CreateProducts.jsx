@@ -61,7 +61,7 @@ function CreateProducts() {
 
         const result = await createNewProduct(data);
         if (result) {
-            navigate('/seller/products');
+            navigate('/seller/dashboard');
         }
     };
 

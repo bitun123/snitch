@@ -36,6 +36,7 @@ export const useAuth = () => {
       const data = await login({ email, password });
       dispatch(setUser(data.user));
       dispatch(setError(null));
+      return data; 
     } catch (error) {
       dispatch(setError(error.message));
     } finally {

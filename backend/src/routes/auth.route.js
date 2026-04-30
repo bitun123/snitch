@@ -49,7 +49,5 @@ router.get(
 );
 
 
-
-
 router.get("/profile",authenticateUser,getProfileController)
 export default router;

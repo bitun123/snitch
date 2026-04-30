@@ -26,9 +26,16 @@ function Login() {
   const onSubmit = async (data) => {
     const { email, password } = data;
     try {
-      const res = handleLogin({ email, password });
-      console.log('Login successful:', res);
-      navigate('/');
+      const res = await handleLogin({ email, password });
+console.log('Login response:', res);
+      const userRole = res?.user?.role;
+      console.log('User role after login:', userRole);
+
+      if (userRole === "seller") {
+        navigate("/seller/dashboard");
+      } else {
+        navigate("/"); // or /user/dashboard if you create one
+      }
     } catch (error) {
       throw new Error('Login failed: ' + error.message);
     }
