@@ -21,18 +21,9 @@ const SnitchNavbar = () => {
                         </span>
                     </Link>
 
-                    {/* Search — hidden on mobile */}
-                    <div className="hidden md:flex flex-1 justify-center">
-                        <div className="relative w-full max-w-md">
-                            <Search size={14} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
-                            <input
-                                type="text"
-                                placeholder="Search products..."
-                                className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-transparent rounded-lg outline-none text-gray-600 text-[11px] font-semibold tracking-widest uppercase placeholder:text-gray-400 focus:bg-white focus:border-gray-200 transition-all"
-                            />
-                        </div>
-                    </div>
-
+                <div>
+                    <h1>hello</h1>
+                </div>
                     {/* Right Side */}
                     <div className="flex items-center gap-4 ml-auto shrink-0">
 

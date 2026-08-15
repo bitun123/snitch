@@ -116,9 +116,8 @@ function ProductDetails() {
     return (
         <div className="min-h-screen bg-white font-[Manrope,sans-serif]">
             <SnitchNavbar />
-
-            {/* ── Breadcrumb / Back ── */}
-            <div className="max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-14 pt-8 sm:pt-10">
+            {/* ── Breadcrumb / Back (placed after navbar, top-right) ── */}
+            <div className="max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-3 lg:pt-3 sm:pt-10 z-10 flex items-center justify-end gap-3 sm:gap-4 lg:gap-6 py-3 sm:py-6 lg:py-8 mt-4 sm:mt-6 lg:mt-8 absolute right-10 top-10 ">
                 <button
                     onClick={() => navigate(-1)}
                     className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.25em] text-gray-400 hover:text-gray-900 transition-colors group"
@@ -132,7 +131,7 @@ function ProductDetails() {
             </div>
 
             {/* ── Main Grid ── */}
-            <main className="max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-14 py-8 sm:py-12 lg:py-8">
+            <main className="max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-14 py-8 sm:py-12 lg:py-3">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 xl:gap-28">
 
                     {/* ════════════════════════════════════

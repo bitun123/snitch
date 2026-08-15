@@ -7,6 +7,7 @@ import ProtectedComponent from '../feature/auth/components/ProtectedComponent'
 import Home from '../feature/product/pages/Home'
 import ProductDetails from '../feature/product/pages/ProductDetails'
 import SellerProductDetails from '../feature/product/pages/SellerProductDetails'
+import Profile from '../feature/public/page/Profile'
 
 export const routes = createBrowserRouter([
     {
@@ -20,6 +21,10 @@ export const routes = createBrowserRouter([
     {
         path: '/register',
         element: <Register />,
+    },
+    {
+        path:'/profile',
+        element:<Profile/>
     },
     {
         path: '/product/:productId',
