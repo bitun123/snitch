@@ -3,6 +3,8 @@ import React from 'react';
 function GoogleAuthButton() {
   return (
     <>
+
+
       <a
         href="/api/auth/google"
         aria-label="Continue with Google"

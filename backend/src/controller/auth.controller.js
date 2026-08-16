@@ -118,6 +118,7 @@ export const googleCallbackController = async (req, res) => {
     const token = jwt.sign(
       {
         id: user._id,
+        role: user.role,
       },
       config.JWT_SECRET,
       {
@@ -127,7 +128,8 @@ export const googleCallbackController = async (req, res) => {
 
     res.cookie("token", token);
 
-    res.redirect("http://localhost:5173/");
+    const redirectPath = user.role === "seller" ? "/seller/dashboard" : "/public/dashboard";
+    res.redirect(`http://localhost:5173${redirectPath}`);
   } catch (error) {
     throw new Error("Google authentication failed: " + error.message);
   }

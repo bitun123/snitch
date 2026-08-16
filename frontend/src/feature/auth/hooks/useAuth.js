@@ -50,6 +50,7 @@ try {
   dispatch(setLoading(true));
   const data = await getProfile();
   dispatch(setUser(data.user));
+  dispatch(setIsAuthenticated(true));
   dispatch(setError(null));
 } catch (error) {
   dispatch(setError(error.message));

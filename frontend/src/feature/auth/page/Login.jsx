@@ -22,8 +22,6 @@ function Login() {
     try {
       const res = await handleLogin({ email, password });
       const userRole = res?.user?.role;
-      console.log('User role after login:', userRole);
-
       if (userRole === "seller") {
         navigate("/seller/dashboard");
       } else {
