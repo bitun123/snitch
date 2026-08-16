@@ -18,7 +18,6 @@ function Dashboard() {
     }, []);
 
 const products = allSellerProducts.products
-console.log("Products in Dashboard:", products);
     return (
         <div className="min-h-screen bg-gray-50 text-gray-800 antialiased pb-24">
 

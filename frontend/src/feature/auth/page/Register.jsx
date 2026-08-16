@@ -28,7 +28,6 @@ function Register() {
   });
 
   const onSubmit = async (data) => {
-    console.log('Register Data:', data);
 
     const { userName, email, password, phone, isSeller } = data;
 

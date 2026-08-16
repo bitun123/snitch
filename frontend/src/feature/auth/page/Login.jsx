@@ -15,26 +15,19 @@ function Login() {
   const authState = useSelector((state) => state.auth);
   const { loading, error } = authState;
   const navigate = useNavigate();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isValid },
-  } = useForm({
-    mode: 'onChange',
-  });
+  const {register, handleSubmit,formState: { errors, isValid },} = useForm({ mode: 'onChange'});
 
   const onSubmit = async (data) => {
     const { email, password } = data;
     try {
       const res = await handleLogin({ email, password });
-console.log('Login response:', res);
       const userRole = res?.user?.role;
       console.log('User role after login:', userRole);
 
       if (userRole === "seller") {
         navigate("/seller/dashboard");
       } else {
-        navigate("/"); // or /user/dashboard if you create one
+        navigate("/public/dashboard");
       }
     } catch (error) {
       throw new Error('Login failed: ' + error.message);
