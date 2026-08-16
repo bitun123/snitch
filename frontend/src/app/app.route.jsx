@@ -7,7 +7,7 @@ import ProtectedComponent from "../feature/auth/components/ProtectedComponent";
 import Home from "../feature/product/pages/Home";
 import ProductDetails from "../feature/product/pages/ProductDetails";
 import SellerProductDetails from "../feature/product/pages/SellerProductDetails";
-import Profile from "../feature/public/page/Profile";
+import Profile from "../feature/public/component/Profile";
 import PublicComponent from "../feature/auth/components/PublicComponent";
 import PublicDashboard from "../feature/public/page/PublicDashboard";
 
